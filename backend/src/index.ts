@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
-import { connectDB } from "./connect";
+import { connectDB } from "../connect";
 
-import mongoose from "mongoose";
+import userRoutes from "./routes/users";
 
 const start = async () => {
   // const uri =
@@ -15,9 +15,11 @@ const start = async () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
 
-  app.get("/api/test", async (req: Request, res: Response) => {
-    res.json({ message: "hello from express endpoint!!!" });
-  });
+  app.use("/api/users", userRoutes);
+
+  // app.get("/api/test", async (req: Request, res: Response) => {
+  //   res.json({ message: "hello from express endpoint!!!" });
+  // });
 
   app.listen(3000, () => {
     console.log("server running on localhost:3000");
