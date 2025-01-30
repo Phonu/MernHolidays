@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from "express";
+import express, { Request, Response } from "express";
 import User from "../models/users";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
@@ -17,21 +17,22 @@ router.post(
     }),
   ],
   async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    console.log("checking...", errors);
+    if (!errors.isEmpty()) {
+      console.log("checking111...", errors);
+      res.status(400).json({ error: errors.array() });
+      return;
+    }
+
     try {
-      const errors = validationResult(req);
-      console.log("checking...", errors);
-      if (!errors.isEmpty()) {
-        console.log("checking111...", errors);
-
-        res.status(400).json({ message: errors.array() });
-      }
-
       let user = await User.findOne({
         email: req.body.email,
       });
 
       if (user) {
         res.status(400).json({ message: "User already exits" });
+        return;
       }
 
       user = new User(req.body);
@@ -52,9 +53,11 @@ router.post(
         maxAge: 86400000, // same as expires in seconds
       });
       res.status(200).send({ message: "User registered OK" });
+      return;
     } catch (error) {
       console.log("error in Users", error);
       res.status(500).send({ message: "Something went wrong" });
+      return;
     }
   }
 );
