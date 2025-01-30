@@ -51,3 +51,11 @@ export default tseslint.config({
 
 // Thing to know
 // how to override default styles of tailwindcss
+
+v3 vs v4 tailwind css
+GUIDE: https://www.youtube.com/watch?v=ud913ekwAOQ
+
+1. CSS configuration
+   Instead of tailwind.config.js file, you can configure all of your customizations directly in the CSS file where you import Tailwind
+
+2.
