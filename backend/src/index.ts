@@ -11,6 +11,10 @@ import cookieParser from "cookie-parser";
 const start = async () => {
   // const uri =
   //   "mongodb+srv://kunalpoddar41292:Ec90X7v2RKWfdhol@cluster0.yir5y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  console.log(
+    "checking db uri",
+    process.env.MONGODB_CONNECTION_STRING as string
+  );
   await connectDB(process.env.MONGODB_CONNECTION_STRING as string);
 
   const app = express();
