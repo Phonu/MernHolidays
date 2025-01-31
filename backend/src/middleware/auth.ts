@@ -14,7 +14,7 @@ declare global {
     }
   }
 }
-
+// token help us to store cookies
 const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.cookies["auth_token"];
   if (!token) {
