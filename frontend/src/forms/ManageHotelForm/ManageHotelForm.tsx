@@ -22,14 +22,30 @@ const ManageHotelForm = () => {
   //since we broken Hotel Form on smaller components so we are wrapping FormProvider to access the
   // data on other components and child components.
   const formMethods = useForm<HotelFormData>();
+
+  const { handleSubmit } = formMethods;
+
+  const onSubmit = handleSubmit((formData: HotelFormData) => {
+    //create new Formdata object & call our API.
+    console.log("KUNAL: checking formdata", formData);
+  });
   return (
     <FormProvider {...formMethods}>
-      <form className="flex flex-col gap-10">
+      <form className="flex flex-col gap-10" onSubmit={onSubmit}>
         <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
         <GuestSection />
         <ImageSection />
+
+        <span className="flex justify-end">
+          <button
+            type="submit"
+            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
+          >
+            Save
+          </button>
+        </span>
       </form>
     </FormProvider>
   );
