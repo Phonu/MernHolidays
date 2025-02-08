@@ -46,7 +46,7 @@ const start = async () => {
 
   app.use("/api/users", userRoutes);
   app.use("/api/auth", authRoutes);
-  app.use("api/my-hotels", myHotelRoutes);
+  app.use("/api/my-hotels", myHotelRoutes);
 
   app.listen(3000, () => {
     console.log("server running on localhost:3000");

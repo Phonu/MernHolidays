@@ -16,7 +16,6 @@ const upload = multer({
   },
 });
 
-// api/my-hotels
 router.post(
   "/",
   verifyToken,
@@ -42,7 +41,10 @@ router.post(
   upload.array("imageFiles", 6),
   async (request: Request, response: Response) => {
     try {
+      console.log("2222");
+
       const imageFiles = request.files as Express.Multer.File[];
+      console.log("KUNAL! request in backend router", request.body);
       const newHotel: HotelType = request.body;
 
       // 1. upload the images to cloudinary

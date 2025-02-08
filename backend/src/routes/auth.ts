@@ -6,7 +6,8 @@ import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth";
 
 const router = express.Router();
-// api/auth/login
+
+/*  /api/auth/login */
 router.post(
   "/login",
   [

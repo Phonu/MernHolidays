@@ -5,7 +5,7 @@ import { check, validationResult } from "express-validator";
 
 const router = express.Router();
 
-// api/users/register
+/*  /api/users/register */
 router.post(
   "/register",
   [
